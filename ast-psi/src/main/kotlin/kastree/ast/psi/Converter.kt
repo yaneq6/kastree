@@ -397,7 +397,13 @@ open class Converter {
             lambda = null
         ).map(v)
         else -> Node.Decl.Structured.Parent.Type(
-            type = v.typeReference?.let(::convertTypeRef) as? Node.TypeRef.Simple ?: error("Bad type on super call $v"),
+            type = v.typeReference?.let(::convertTypeRef)?.let {
+                when (it) {
+                    is Node.TypeRef.Simple -> it
+                    is Node.TypeRef.Func -> it
+                    else -> null
+                }
+            } ?: error("Bad type on super call $v"),
             by = (v as? KtDelegatedSuperTypeEntry)?.delegateExpression?.let(::convertExpr)
         ).map(v)
     }

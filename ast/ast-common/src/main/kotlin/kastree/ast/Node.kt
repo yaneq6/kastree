@@ -66,7 +66,7 @@ sealed class Node {
                     val lambda: Expr.Call.TrailLambda?
                 ) : Parent()
                 data class Type(
-                    val type: TypeRef.Simple,
+                    val type: TypeRef,
                     val by: Expr?
                 ) : Parent()
             }

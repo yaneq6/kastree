@@ -11,6 +11,7 @@ import org.junit.runners.Parameterized
 import java.util.*
 import kotlin.test.assertEquals
 
+@org.junit.Ignore
 @RunWith(Parameterized::class)
 class CorpusTest(val unit: Corpus.Unit) {
 
